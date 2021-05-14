@@ -30,6 +30,11 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/nests',
   },
+  {
+    label: 'Referrals',
+    icon: 'PoolIcon',
+    href: '/referrals',
+  },
   // {
   //   label: 'Pools',
   //   icon: 'PoolIcon',
