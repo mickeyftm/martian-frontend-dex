@@ -1241,6 +1241,30 @@
         "stringId": 10005,
         "text": "Market Cap"
       }
+    },
+    {
+      "data": {
+        "stringId": 10006,
+        "text": "Martian Referral Program"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10008,
+        "text": "Total Referrals"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10009,
+        "text": "Total Referral Commissions"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10010,
+        "text": "Your Referral Link"
+      }
     }
   ],
   "pagination": {
