@@ -67,16 +67,7 @@
     "prettier": "^2.1.2",
     "source-map-explorer": "^2.5.1"
   },
-  "description": "[![Netlify Status](https://api.netlify.com/api/v1/badges/7bebf1a3-be7b-4165-afd1-446256acd5e3/deploy-status)](https://app.netlify.com/sites/pancake-prod/deploys)",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/martiandefi/martian-frontend-dex.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/martiandefi/martian-frontend-dex/issues"
-  },
-  "homepage": "https://github.com/martiandefi/martian-frontend-dex#readme"
+  "repository": "https://github.com/martiandefi/martian-frontend-dex.git",
+  "license": "MIT"
 }
