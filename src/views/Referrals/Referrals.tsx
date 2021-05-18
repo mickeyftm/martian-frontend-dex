@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React from 'react'
 import Page from 'components/layout/Page'
 import { 
 	Heading, 
@@ -8,24 +8,15 @@ import {
 	Flex,
 	Button
 } from '@pancakeswap-libs/uikit'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
+import UnlockWalletCard from './components/UnlockWalletCard';
+import ReferralCard from './components/ReferralCard';
 import Divider from './components/Divider'
-import styles from './styles/referrals.module.css';
 
 const Referrals: React.FC = () => {
 	const TranslateString = useI18n()
-	const [totalReferrals, setTotalReferrals] = useState(0);
-	const [totalReferralCommisions, setTotalReferralCommisions] = useState(Number(0.0000).toFixed(4));
-	const [yourReferralLink, setYourReferralLink] = useState('https://pantherswap.com/?ref=r4bpzba6on5yswwzqrnqeznvuwvndn9eznkk0jdbm')
-	const [copyTxt, setCopyTxt] = useState('Copy');
-
-	function copy() {
-		navigator.clipboard.writeText(yourReferralLink)
-		setCopyTxt('Copied');
-		setTimeout(() => {
-			setCopyTxt('Copy');
-		}, 1000);
-	}
+	const wallet = useWallet()
 
 	return (
 		<Page>
@@ -38,34 +29,13 @@ const Referrals: React.FC = () => {
 		    <div>
 	       		<Divider />
 
-	       		<Flex className={styles.cardContainer} justifyContent='space-between'>
-	       			<Card className={styles.card}>
-			          	<CardBody>{TranslateString(10008, 'Total Referrals')}</CardBody>
-			          	<CardFooter>{totalReferrals}</CardFooter>
-			        </Card>
+	       		{wallet.status === 'connected' &&
+	       			<ReferralCard />
+	       		}
 
-	       			<Card className={styles.card}>
-			          	<CardBody>{TranslateString(10009, 'Total Referral Commissions')}</CardBody>
-			          	<CardFooter>{totalReferralCommisions} Martian</CardFooter>
-			        </Card>
-	       		</Flex>
-
-	       		<Card style={{ marginTop: '30px' }}>
-		          	<CardBody>
-			          	<Flex justifyContent="space-between">
-			          		<Flex alignSelf="center">
-			          			{TranslateString(10010, 'Your Referral Link')}
-		          			</Flex>
-
-			          		<Flex>
-				          		<Button as="button" size="sm" onClick={copy}>
-						          {copyTxt}
-						        </Button>
-					        </Flex>
-				        </Flex>
-	          		</CardBody>
-		          	<CardFooter style={{textAlign: 'center'}}>{yourReferralLink}</CardFooter>
-		        </Card>
+	       		{wallet.status === 'disconnected' &&
+	       			<UnlockWalletCard />
+	       		}
 		    </div>
 	    </Page>
 	)

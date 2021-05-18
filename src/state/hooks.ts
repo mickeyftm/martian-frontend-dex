@@ -2,8 +2,14 @@ import BigNumber from 'bignumber.js'
 import { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
-import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
-import { State, Farm, Pool } from './types'
+import { 
+  fetchFarmsPublicDataAsync, 
+  fetchPoolsPublicDataAsync, 
+  fetchPoolsUserDataAsync,
+  fetchTotalReferralsDataAsync,
+  fetchTotalReferralCommissionsDataAsync
+} from './actions'
+import { State, Farm, Pool, Referral } from './types'
 import { QuoteToken } from '../config/constants/types'
 
 const ZERO = new BigNumber(0)
@@ -104,4 +110,19 @@ export const useTotalValue = (): BigNumber => {
     }
   }
   return value;
+}
+
+// Referrals
+
+export const useReferrals = (account): Referral => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchTotalReferralsDataAsync(account))
+      dispatch(fetchTotalReferralCommissionsDataAsync(account))
+    }
+  }, [account, dispatch])
+
+  const referrals = useSelector((state: State) => state.referrals.data)
+  return referrals
 }

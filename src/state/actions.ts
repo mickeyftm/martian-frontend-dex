@@ -7,3 +7,4 @@ export {
   updateUserPendingReward,
   updateUserStakedBalance,
 } from './pools'
+export { fetchTotalReferralsDataAsync, fetchTotalReferralCommissionsDataAsync } from './referrals'

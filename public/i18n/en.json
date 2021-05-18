@@ -1265,6 +1265,12 @@
         "stringId": 10010,
         "text": "Your Referral Link"
       }
+    },
+    {
+      "data": {
+        "stringId": 10011,
+        "text": "Unlock wallet to get your unique referral link"
+      }
     }
   ],
   "pagination": {
