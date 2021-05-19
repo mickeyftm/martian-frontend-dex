@@ -10,6 +10,7 @@ import {
 import UnlockButton from 'components/UnlockButton';
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useReferrals } from 'state/hooks'
+import { generateReferralLink } from 'utils/referrals'
 import useI18n from 'hooks/useI18n'
 import styles from '../styles/referrals.module.css';
 
@@ -19,11 +20,11 @@ const ReferralCard: React.FC = () => {
 	const referrals = useReferrals(account)
 	const [totalReferrals, setTotalReferrals] = useState<number>(0);
 	const [totalReferralCommisions, setTotalReferralCommisions] = useState<number>(Number(0));
-	const [yourReferralLink, setYourReferralLink] = useState('https://pantherswap.com/?ref=r4bpzba6on5yswwzqrnqeznvuwvndn9eznkk0jdbm')
+	const [referralLink, setReferralLink] = useState<string>('');
 	const [copyTxt, setCopyTxt] = useState('Copy');
 
 	function copy() {
-		navigator.clipboard.writeText(yourReferralLink)
+		navigator.clipboard.writeText(referralLink)
 		setCopyTxt('Copied');
 		setTimeout(() => {
 			setCopyTxt('Copy');
@@ -34,37 +35,43 @@ const ReferralCard: React.FC = () => {
 		setTotalReferrals(referrals.totalReferrals);
 		setTotalReferralCommisions(referrals.totalReferralCommissions);
 	}, [referrals])
+
+	useEffect(() => {
+		setReferralLink(generateReferralLink(account));
+	}, [account])
 	
 	return (
 		<div>
 			<Flex className={styles.cardContainer} justifyContent='space-between'>
-	       			<Card className={styles.card}>
-			          	<CardBody>{TranslateString(10008, 'Total Referrals')}</CardBody>
-			          	<CardFooter>{totalReferrals}</CardFooter>
-			        </Card>
-
-	       			<Card className={styles.card}>
-			          	<CardBody>{TranslateString(10009, 'Total Referral Commissions')}</CardBody>
-			          	<CardFooter>{totalReferralCommisions} Martian</CardFooter>
-			        </Card>
-	       		</Flex>
-
-	       		<Card style={{ marginTop: '30px' }}>
-		          	<CardBody>
-			          	<Flex justifyContent="space-between">
-			          		<Flex alignSelf="center">
-			          			{TranslateString(10010, 'Your Referral Link')}
-		          			</Flex>
-
-			          		<Flex>
-				          		<Button as="button" size="sm" onClick={copy}>
-				          			{copyTxt}
-						        </Button>
-					        </Flex>
-				        </Flex>
-	          		</CardBody>
-		          	<CardFooter style={{textAlign: 'center'}}>{yourReferralLink}</CardFooter>
+       			<Card className={styles.card}>
+		          	<CardBody>{TranslateString(10008, 'Total Referrals')}</CardBody>
+		          	<CardFooter>{totalReferrals}</CardFooter>
 		        </Card>
+
+       			<Card className={styles.card}>
+		          	<CardBody>{TranslateString(10009, 'Total Referral Commissions')}</CardBody>
+		          	<CardFooter>{totalReferralCommisions} Martian</CardFooter>
+		        </Card>
+       		</Flex>
+
+       		<Card style={{ marginTop: '30px' }}>
+	          	<CardBody>
+		          	<Flex justifyContent="space-between">
+		          		<Flex alignSelf="center">
+		          			{TranslateString(10010, 'Your Referral Link')}
+	          			</Flex>
+
+		          		<Flex>
+			          		<Button as="button" size="sm" onClick={copy}>
+			          			{copyTxt}
+					        </Button>
+				        </Flex>
+			        </Flex>
+          		</CardBody>
+	          	<CardFooter style={{textAlign: 'center'}}>
+	          		<a href={referralLink} target="_blank" rel="noreferrer">{referralLink}</a>
+	          	</CardFooter>
+	        </Card>
 		</div>
 	)
 }
