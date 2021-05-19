@@ -33,7 +33,7 @@ const Referrals: React.FC = () => {
 	       			<ReferralCard />
 	       		}
 
-	       		{wallet.status === 'disconnected' &&
+	       		{wallet.status !== 'connected' &&
 	       			<UnlockWalletCard />
 	       		}
 		    </div>
