@@ -5,12 +5,12 @@ const farms: FarmConfig[] = [
   {
     pid: 0,
     risk: 5,
-    lpSymbol: 'TST-MRT LP',
+    lpSymbol: 'MRT-BUSD LP',
     lpAddresses: {
       97: '',
       56: '0xe717d41075ead1c0903cf52c86f532f329fb411c',
     },
-    tokenSymbol: 'BUSD',
+    tokenSymbol: 'MRT',
     tokenAddresses: {
       97: '',
       56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
@@ -21,12 +21,12 @@ const farms: FarmConfig[] = [
   {
     pid: 1,
     risk: 5,
-    lpSymbol: 'TST-MRT LP',
+    lpSymbol: 'MRT-BNB LP',
     lpAddresses: {
       97: '',
       56: '0xdc8b4946428e227bfd98a3b86c049d93103ee628',
     },
-    tokenSymbol: 'BNB',
+    tokenSymbol: 'MRT',
     tokenAddresses: {
       97: '',
       56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
@@ -37,7 +37,7 @@ const farms: FarmConfig[] = [
   {
     pid: 2,
     risk: 3,
-    lpSymbol: 'BNB-BUSD LP',
+    lpSymbol: 'BNB - BUSD LP',
     lpAddresses: {
       97: '',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',

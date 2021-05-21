@@ -1946,7 +1946,7 @@
 
 "@pancakeswap-libs/uikit@martiandefi/martian-ui-kit-dex":
   version "0.10.2"
-  resolved "https://codeload.github.com/martiandefi/martian-ui-kit-dex/tar.gz/2b6f9a5f5395aa32d2e04c1e12face6d3ce83f7e"
+  resolved "https://codeload.github.com/martiandefi/martian-ui-kit-dex/tar.gz/062b64e3c9c9f836a2f8128f4e0e97f0366c7df1"
   dependencies:
     "@pancakeswap-libs/uikit" "^0.29.4"
     "@types/lodash" "^4.14.162"
@@ -2504,9 +2504,9 @@
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/lodash@^4.14.162", "@types/lodash@^4.14.168":
-  version "4.14.169"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.169.tgz#83c217688f07a4d9ef8f28a3ebd1d318f6ff4cbb"
-  integrity sha512-DvmZHoHTFJ8zhVYwCLWbQ7uAbYQEk52Ev2/ZiQ7Y7gQGeV9pjBqjnQpECMHfKS1rCYAhMI7LHVxwyZLZinJgdw==
+  version "4.14.170"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
+  integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
 
 "@types/minimatch@*":
   version "3.0.4"
