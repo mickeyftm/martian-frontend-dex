@@ -32,16 +32,16 @@ const CakeStats = () => {
   const cakeSupply = getBalanceNumber(circSupply);
   const marketCap = eggPrice.times(circSupply);
 
-  let eggPerBlock = 0;
-  if(farms && farms[0] && farms[0].eggPerBlock){
-    eggPerBlock = new BigNumber(farms[0].eggPerBlock).div(new BigNumber(10).pow(18)).toNumber();
+  let mrtPerBlock = 0;
+  if(farms && farms[0] && farms[0].mrtPerBlock){
+    mrtPerBlock = new BigNumber(farms[0].mrtPerBlock).div(new BigNumber(10).pow(18)).toNumber();
   }
 
   return (
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Egg Stats')}
+          {TranslateString(534, 'MRT Stats')}
         </Heading>
         <Row>
           <Text fontSize="14px">{TranslateString(10005, 'Market Cap')}</Text>
@@ -60,8 +60,8 @@ const CakeStats = () => {
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New EGG/block')}</Text>
-          <Text bold fontSize="14px">{eggPerBlock}</Text>
+          <Text fontSize="14px">{TranslateString(540, 'New MRT/block')}</Text>
+          <Text bold fontSize="14px">{mrtPerBlock}</Text>
         </Row>
       </CardBody>
     </StyledCakeStats>
