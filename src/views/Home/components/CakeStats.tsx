@@ -26,15 +26,15 @@ const CakeStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
-  const farms = useFarms();
-  const eggPrice = usePriceCakeBusd();
-  const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
-  const cakeSupply = getBalanceNumber(circSupply);
-  const marketCap = eggPrice.times(circSupply);
+  const farms = useFarms()
+  const eggPrice = usePriceCakeBusd()
+  const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
+  const cakeSupply = getBalanceNumber(circSupply)
+  const marketCap = eggPrice.times(circSupply)
 
-  let mrtPerBlock = 0;
-  if(farms && farms[0] && farms[0].mrtPerBlock){
-    mrtPerBlock = new BigNumber(farms[0].mrtPerBlock).div(new BigNumber(10).pow(18)).toNumber();
+  let martianPerBlock = 0
+  if (farms && farms[0] && farms[0].martianPerBlock) {
+    martianPerBlock = new BigNumber(farms[0].martianPerBlock).div(new BigNumber(10).pow(18)).toNumber()
   }
 
   return (
@@ -61,7 +61,9 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New MRT/block')}</Text>
-          <Text bold fontSize="14px">{mrtPerBlock}</Text>
+          <Text bold fontSize="14px">
+            {martianPerBlock}
+          </Text>
         </Row>
       </CardBody>
     </StyledCakeStats>

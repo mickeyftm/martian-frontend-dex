@@ -86,6 +86,6 @@ export type Nft = {
 }
 
 export interface ReferralConfig {
-  totalReferrals: number;
-  totalReferralCommissions: number;
+  totalReferrals: number
+  totalReferralCommissions: number
 }

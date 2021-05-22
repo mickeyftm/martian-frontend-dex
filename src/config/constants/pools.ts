@@ -3,7 +3,7 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 const pools: PoolConfig[] = [
   // {
   //   sousId: 0,
-  //   tokenName: 'CAKE',
+  //   tokenName: 'MRT',
   //   stakingTokenName: QuoteToken.CAKE,
   //   stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
   //   contractAddress: {

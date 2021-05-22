@@ -8,8 +8,8 @@ export interface Farm extends FarmConfig {
   tokenPriceVsQuote?: BigNumber
   poolWeight?: number
   depositFeeBP?: number
-  mrtPerBlock?: number
-    userData?: {
+  martianPerBlock?: number
+  userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
     stakedBalance: BigNumber
@@ -29,8 +29,7 @@ export interface Pool extends PoolConfig {
   }
 }
 
-export interface Referral extends ReferralConfig {
-}
+export type Referral = ReferralConfig
 
 // Slices states
 

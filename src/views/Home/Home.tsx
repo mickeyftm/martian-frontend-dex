@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import {parseReferralCode} from 'utils/referrals'
+import { parseReferralCode } from 'utils/referrals'
 import Page from 'components/layout/Page'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import FarmStakingCard from './components/FarmStakingCard'
@@ -58,11 +58,11 @@ const Cards = styled(BaseLayout)`
 
 const Home: React.FC = () => {
   const TranslateString = useI18n()
-  const {account} = useWallet()
+  const { account } = useWallet()
 
   useEffect(() => {
-    parseReferralCode(window.location.search, account);
-  }, [account]);
+    parseReferralCode(window.location.search, account)
+  }, [account])
 
   return (
     <Page>
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
       <div>
         <Cards>
           <FarmStakingCard />
-          <TwitterCard/>
+          <TwitterCard />
           <CakeStats />
           <TotalValueLockedCard />
         </Cards>

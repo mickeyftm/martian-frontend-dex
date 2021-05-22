@@ -5,25 +5,25 @@ import { ReferralsState, Referral } from '../types'
 import fetchTotalReferralCommissions from './fetchTotalReferralCommissions'
 import fetchTotalReferrals from './fetchTotalReferrals'
 
-const initialState: ReferralsState = { data: {...ReferralConfig} }
+const initialState: ReferralsState = { data: { ...ReferralConfig } }
 
 export const ReferralsSlice = createSlice({
   name: 'Referrals',
   initialState,
   reducers: {
-		setTotalReferralsData: (state, action) => {
+    setTotalReferralsData: (state, action) => {
       state.data = {
-      	...state.data,
-      	totalReferrals: action.payload
+        ...state.data,
+        totalReferrals: action.payload,
       }
     },
     setTotalReferralCommissionsData: (state, action) => {
       state.data = {
-      	...state.data,
-      	totalReferralCommissions: action.payload
+        ...state.data,
+        totalReferralCommissions: action.payload,
       }
-    }
-  }
+    },
+  },
 })
 
 // Actions

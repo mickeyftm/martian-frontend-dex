@@ -8,12 +8,19 @@ export const approve = async (lpContract, masterChefContract, account) => {
 }
 
 export const stake = async (masterChefContract, pid, amount, account) => {
-  return masterChefContract.methods
-    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  return (
+    masterChefContract.methods
+      // TODO: Add in referral address as thrid parameter
+      .deposit(
+        pid,
+        new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
+        '0xa31e9335cd9C63ec6d37819856617A2146aAb039',
+      )
+      .send({ from: account })
+      .on('transactionHash', (tx) => {
+        return tx.transactionHash
+      })
+  )
 }
 
 export const sousStake = async (sousChefContract, amount, account) => {

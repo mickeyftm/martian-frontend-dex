@@ -21,5 +21,5 @@ export const getLotteryTicketAddress = () => {
   return addresses.lotteryNFT[chainId]
 }
 export const getReferralAddress = () => {
-	return addresses.referral[chainId]
+  return addresses.referral[chainId]
 }

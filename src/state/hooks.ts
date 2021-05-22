@@ -2,12 +2,12 @@ import BigNumber from 'bignumber.js'
 import { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
-import { 
-  fetchFarmsPublicDataAsync, 
-  fetchPoolsPublicDataAsync, 
+import {
+  fetchFarmsPublicDataAsync,
+  fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
   fetchTotalReferralsDataAsync,
-  fetchTotalReferralCommissionsDataAsync
+  fetchTotalReferralCommissionsDataAsync,
 } from './actions'
 import { State, Farm, Pool, Referral } from './types'
 import { QuoteToken } from '../config/constants/types'
@@ -51,7 +51,6 @@ export const useFarmUser = (pid) => {
   }
 }
 
-
 // Pools
 
 export const usePools = (account): Pool[] => {
@@ -85,31 +84,31 @@ export const usePriceCakeBusd = (): BigNumber => {
   // const bnbPriceUSD = usePriceBnbBusd()
   // const farm = useFarmFromPid(pid)
   // return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
-  const pid = 0; // EGG-BUSD LP
-  const farm = useFarmFromPid(pid);
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO;
+  const pid = 0 // EGG-BUSD LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const useTotalValue = (): BigNumber => {
-  const farms = useFarms();
-  const bnbPrice = usePriceBnbBusd();
-  const cakePrice = usePriceCakeBusd();
-  let value = new BigNumber(0);
+  const farms = useFarms()
+  const bnbPrice = usePriceBnbBusd()
+  const cakePrice = usePriceCakeBusd()
+  let value = new BigNumber(0)
   for (let i = 0; i < farms.length; i++) {
     const farm = farms[i]
     if (farm.lpTotalInQuoteToken) {
-      let val;
+      let val
       if (farm.quoteTokenSymbol === QuoteToken.BNB) {
-        val = (bnbPrice.times(farm.lpTotalInQuoteToken));
-      }else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
-        val = (cakePrice.times(farm.lpTotalInQuoteToken));
-      }else{
-        val = (farm.lpTotalInQuoteToken);
+        val = bnbPrice.times(farm.lpTotalInQuoteToken)
+      } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
+        val = cakePrice.times(farm.lpTotalInQuoteToken)
+      } else {
+        val = farm.lpTotalInQuoteToken
       }
-      value = value.plus(val);
+      value = value.plus(val)
     }
   }
-  return value;
+  return value
 }
 
 // Referrals
