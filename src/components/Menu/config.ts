@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.goosedefi.com/',
+        href: 'https://exchange.vaultdefi.finance/',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.goosedefi.com/#/pool',
+        href: 'https://exchange.vaultdefi.finance/#/pool',
       },
     ],
   },
@@ -35,40 +35,38 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/referrals',
   },
-  // {
-  //   label: 'Pools',
-  //   icon: 'PoolIcon',
-  //   href: '/pools',
-  // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
-  // {
-  //   label: 'NFT',
-  //   icon: 'NftIcon',
-  //   href: '/nft',
-  // },
   {
-    label: 'Info',
+    label: 'Audits',
+    icon: 'PoolIcon',
+    href: 'https://github.com/martiandefi/audit',
+  },
+  {
+    label: 'Features',
     icon: 'InfoIcon',
     items: [
       {
-        label: 'PancakeSwap',
-        href: 'https://pancakeswap.info/token/0xF952Fc3ca7325Cc27D15885d37117676d25BfdA6',
+        label: 'Transfer Tax',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/martian',
       },
       {
-        label: 'CoinGecko',
-        href: 'https://www.coingecko.com/en/coins/goose-finance',
+        label: 'Auto Burn',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/auto-burn-mechanism',
       },
       {
-        label: 'CoinMarketCap',
-        href: 'https://coinmarketcap.com/currencies/goose-finance/',
+        label: 'Auto LP',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/auto-liquidity-mechanism',
       },
       {
-        label: 'AstroTools',
-        href: 'https://app.astrotools.io/pancake-pair-explorer/0x19e7cbecdd23a16dfa5573df54d98f7caae03019',
+        label: 'Harvesting Time Lock',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/harvest-time-lock',
+      },
+      {
+        label: 'Anti Whale Measures',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/mitigate-pump-and-dumps',
+      },
+      {
+        label: 'UFO Airdrops',
+        href: 'https://martianswap.gitbook.io/martianswap/tokenomics/ufo-airdrops',
       },
     ],
   },
@@ -78,32 +76,27 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Github',
-        href: 'https://github.com/goosedefi/',
+        href: 'https://github.com/martiandefi',
       },
       {
         label: 'Docs',
-        href: 'https://goosedefi.gitbook.io/goose-finance/',
+        href: 'https://martianswap.gitbook.io/',
       },
       {
-        label: 'Blog',
-        href: 'https://goosefinance.medium.com/',
+        label: 'Roadmap',
+        href: 'https://martianswap.gitbook.io/martianswap/roadmap-1',
       },
     ],
   },
   {
-    label: 'Partnerships/IFO',
-    icon: 'GooseIcon',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSe7ycrw8Dq4C5Vjc9WNlRtTxEhFDB1Ny6jlAByZ2Y6qBo7SKg/viewform?usp=sf_link',
+    label: 'Listings (Coming Soon)',
+    icon: 'PoolIcon',
+    href: '#',
   },
   {
-    label: 'Audit by Hacken',
-    icon: 'AuditIcon',
-    href: 'https://www.goosedefi.com/files/hackenAudit.pdf',
-  },
-  {
-    label: 'Audit by CertiK',
-    icon: 'AuditIcon',
-    href: 'https://certik.org/projects/goose-finance',
+    label: 'Analytics (Coming Soon)',
+    icon: 'PoolIcon',
+    href: '',
   },
 ]
 
