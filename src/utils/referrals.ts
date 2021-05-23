@@ -41,4 +41,24 @@ export function parseReferralCode(referralCode, account) {
   return true
 }
 
+export function getReferralAddress() {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('martian_finance_referral_code='))
+    .split('=')[1];
+
+  if (!cookieValue) {
+    return false;
+  }
+
+  const decryptedReferrereAddress = CryptoJS.Rabbit.decrypt(cookieValue, secretKey, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.NoPadding,
+  }).toString(CryptoJS.enc.Utf8)
+
+  const referrereAddress = `0x${decryptedReferrereAddress}`
+
+  return referrereAddress;
+}
+
 export default generateReferralLink
