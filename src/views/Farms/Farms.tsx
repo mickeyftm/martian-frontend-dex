@@ -114,7 +114,11 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         </FlexLayout>
       </div>
       <div style={{ textAlign: 'center' }}>
-        <img src={path === '/farms' ? '/images/egg/8.png' : '/images/egg/8b.png'} alt="illustration" style={{ width: '400px', height: 'auto' }} />
+        <img
+          src={path === '/farms' ? '/images/egg/8.png' : '/images/egg/8b.png'}
+          alt="illustration"
+          style={{ width: '400px', height: 'auto' }}
+        />
       </div>
     </Page>
   )
