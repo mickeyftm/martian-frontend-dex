@@ -20,6 +20,8 @@ const Wrapper = styled(Flex)`
 
 const MultiplierTag = styled(Tag)`
   margin-left: 4px;
+  background-color: #c45200;
+  border: 1px solid #c45200;
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
@@ -39,7 +41,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           {depositFee === 0 ? <NoFeeTag /> : null}
           {/* {isCommunityFarm ? <CommunityTag /> : <CoreTag />} */}
           {/* <RiskTag risk={risk} /> */}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+          <MultiplierTag>{multiplier}</MultiplierTag>
         </Flex>
       </Flex>
     </Wrapper>
