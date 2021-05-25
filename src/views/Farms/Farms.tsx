@@ -93,7 +93,14 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   return (
     <Page>
-      <Heading as="h1" size="lg" color="primary" mb="50px" style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src={path === '/farms' ? '/images/egg/8.png' : '/images/egg/8b.png'}
+          alt="illustration"
+          style={{ width: '200px', height: 'auto' }}
+        />
+      </div>
+      <Heading as="h1" size="lg" color="primary" mb="10px" mt="10px" style={{ textAlign: 'center' }}>
         {tokenMode
           ? TranslateString(10002, 'Stake tokens to earn MRT')
           : TranslateString(320, 'Stake LP tokens to earn MRT')}
@@ -112,13 +119,6 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
             {farmsList(inactiveFarms, true)}
           </Route>
         </FlexLayout>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <img
-          src={path === '/farms' ? '/images/egg/8.png' : '/images/egg/8b.png'}
-          alt="illustration"
-          style={{ width: '400px', height: 'auto' }}
-        />
       </div>
     </Page>
   )

@@ -16,10 +16,18 @@ const Wrapper = styled(Flex)`
   svg {
     margin-right: 0.25rem;
   }
+
+  [src*='mrt-busd'],
+  [src*='mrt-bnb'] {
+    width: 80%;
+    height: auto;
+  }
 `
 
 const MultiplierTag = styled(Tag)`
   margin-left: 4px;
+  background-color: #c45200;
+  border: 1px solid #c45200;
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
@@ -39,7 +47,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           {depositFee === 0 ? <NoFeeTag /> : null}
           {/* {isCommunityFarm ? <CommunityTag /> : <CoreTag />} */}
           {/* <RiskTag risk={risk} /> */}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+          <MultiplierTag>{multiplier}</MultiplierTag>
         </Flex>
       </Flex>
     </Wrapper>
