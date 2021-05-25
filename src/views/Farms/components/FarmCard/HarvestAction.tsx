@@ -51,8 +51,14 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           disabled={rawEarningsBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
-            await onReward()
-            setPendingTx(false)
+
+            try {
+              await onReward()
+            } catch (err) {
+              // NOTE: This is left blank intentionality
+            } finally {
+              setPendingTx(false)
+            }
           }}
         >
           {TranslateString(999, 'Harvest')}

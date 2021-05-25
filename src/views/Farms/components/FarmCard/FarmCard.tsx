@@ -169,10 +169,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         <Text bold>{earnLabel}</Text>
       </Flex>
       <Flex justifyContent="space-between">
-        <Text style={{ fontSize: '24px' }}>{TranslateString(10001, 'Deposit Fee')}:</Text>
-        <Text bold style={{ fontSize: '24px' }}>
-          {farm.depositFeeBP / 100}%
-        </Text>
+        <Text>{TranslateString(10001, 'Deposit Fee')}:</Text>
+        <Text bold>{farm.depositFeeBP / 100}%</Text>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <Text>{TranslateString(10012, 'Harvest Lockup')}:</Text>
+        <Text bold>{farm.harvestLockup} Hour(s)</Text>
       </Flex>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
       <Divider />

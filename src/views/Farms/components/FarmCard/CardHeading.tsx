@@ -16,6 +16,12 @@ const Wrapper = styled(Flex)`
   svg {
     margin-right: 0.25rem;
   }
+
+  [src*='mrt-busd'],
+  [src*='mrt-bnb'] {
+    width: 80%;
+    height: auto;
+  }
 `
 
 const MultiplierTag = styled(Tag)`

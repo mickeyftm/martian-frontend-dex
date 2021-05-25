@@ -1271,6 +1271,12 @@
         "stringId": 10011,
         "text": "Unlock wallet to get your unique referral link"
       }
+    },
+    {
+      "data": {
+        "stringId": 10012,
+        "text": "Harvest Lockup"
+      }
     }
   ],
   "pagination": {

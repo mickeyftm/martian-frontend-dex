@@ -55,7 +55,8 @@ export interface FarmConfig {
     rewardPerBlock: number
     earnLabel: string
     endBlock: number
-  }
+  },
+  harvestLockup: number
 }
 
 export interface PoolConfig {
