@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton } from '@pancakeswap-libs/uikit'
+import { Flex, Text, Skeleton, HelpIcon } from '@pancakeswap-libs/uikit'
 import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
+import ReactTooltip from 'react-tooltip';
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -173,7 +174,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         <Text bold>{farm.depositFeeBP / 100}%</Text>
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(10012, 'Harvest Lockup')}:</Text>
+        <Text>
+          {TranslateString(10012, 'Harvest Lockup')}:
+          <span data-tip data-for='harvestLockup'>&nbsp;<HelpIcon color="primary" style={{width: '13px', height: 'auto'}} /></span>
+          <ReactTooltip id="harvestLockup" place="right" type="dark" effect="float">
+            <Text fontSize="17px" color="primary">{TranslateString(10013, 'How soon you can harvest or compound again.')}</Text>
+          </ReactTooltip>
+        </Text>
         <Text bold>{farm.harvestLockup} Hour(s)</Text>
       </Flex>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />

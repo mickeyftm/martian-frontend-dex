@@ -1,8 +1,16 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
+import { AbiItem } from 'web3-utils'
+import referralABI from 'config/abi/referral.json'
+import { getReferralAddress } from 'utils/addressHelpers'
+import { getWeb3 } from 'utils/web3'
+
 const CryptoJS = require('crypto-js')
 
+const web3 = getWeb3()
+const referralContract = new web3.eth.Contract(referralABI as unknown as AbiItem, getReferralAddress())
 const secretKey = CryptoJS.enc.Utf8.parse(process.env.REACT_APP_SECRET_KEY)
 const hexPrefix = '0x';
+const zeroAddress = `${hexPrefix}0000000000000000000000000000000000000000`;
 const martianRefCodeCookieKey = 'martian_finance_referral_code';
 
 export const generateReferralLink = (account) => {
@@ -17,16 +25,30 @@ export const generateReferralLink = (account) => {
   return `${process.env.REACT_APP_BASE_URL}?ref=${code}`
 }
 
-export function parseReferralCode(referralCode, account) {
+export function getReferralCookie() {
+  const martianCookie = document.cookie
+    .split('; ')
+    .find(row => row.startsWith(`{martianRefCodeCookieKey}=`));
+
+  if (typeof martianCookie === 'undefined') {
+    return '';
+  }
+
+  return martianCookie.split('=')[1];
+}
+
+export async function setReferralCode(referralCode, account) {
   const searchParams = new URLSearchParams(referralCode)
   const isRefNotExists = searchParams.get('ref') === null;
   const isAccountNotExist = account === null;
   if (isRefNotExists || isAccountNotExist) {
-    return false
+    return false;
   }
 
-  const cookieValue = getReferralCookie();
-  if (cookieValue) {
+  const hasExistingCookie = getReferralCookie();
+  const referrerAddress = await referralContract.methods.getReferrer(account).call()
+  const hasExistingReferrer = referrerAddress !== zeroAddress;
+  if (hasExistingCookie || hasExistingReferrer) {
     return false;
   }
 
@@ -49,22 +71,10 @@ export function parseReferralCode(referralCode, account) {
   return true
 }
 
-export function getReferralCookie() {
-  const martianCookie = document.cookie
-    .split('; ')
-    .find(row => row.startsWith(`{martianRefCodeCookieKey}=`));
-
-  if (typeof martianCookie === 'undefined') {
-    return '';
-  }
-
-  return martianCookie.split('=')[1];
-}
-
-export function getReferralAddress() {
+export function getReferralCode() {
   const cookieValue = getReferralCookie();
   if (!cookieValue) {
-    return `${hexPrefix}0000000000000000000000000000000000000000`;
+    return zeroAddress;
   }
 
   const decryptedReferrereAddress = CryptoJS.Rabbit.decrypt(cookieValue, secretKey, {

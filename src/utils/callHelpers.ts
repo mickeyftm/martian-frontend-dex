@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { getReferralAddress } from 'utils/referrals'
+import { getReferralCode } from 'utils/referrals'
 
 export const approve = async (lpContract, masterChefContract, account) => {
   return lpContract.methods
@@ -14,7 +14,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
       .deposit(
         pid,
         new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
-        getReferralAddress(),
+        getReferralCode(),
       )
       .send({ from: account })
       .on('transactionHash', (tx) => {

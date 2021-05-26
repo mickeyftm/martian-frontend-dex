@@ -52,6 +52,7 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-tooltip": "^4.2.19",
     "react-twitter-widgets": "^1.9.5",
     "styled-components": "^5.1.1",
     "typescript": "^4.1.3",

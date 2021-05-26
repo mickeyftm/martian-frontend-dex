@@ -74,3 +74,21 @@ export const fetchFarmUserEarnings = async (account: string) => {
   })
   return parsedEarnings
 }
+
+export const fetchFarmUserNextHarvestUntil = async (account: string) => {
+  const masterChefAdress = getMasterChefAddress()
+
+  const calls = farmsConfig.map((farm) => {
+    return {
+      address: masterChefAdress,
+      name: 'userInfo',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawNextHarvestUntil = await multicall(masterchefABI, calls)
+  const parsedNextHarvestUntils = rawNextHarvestUntil.map((nextHarvestUntil) => {
+    return new BigNumber(nextHarvestUntil.nextHarvestUntil._hex).toJSON()
+  })
+  return parsedNextHarvestUntils
+}

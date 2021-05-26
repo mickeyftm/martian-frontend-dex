@@ -1277,6 +1277,12 @@
         "stringId": 10012,
         "text": "Harvest Lockup"
       }
+    },
+    {
+      "data": {
+        "stringId": 10013,
+        "text": "How soon you can harvest or compound again."
+      }
     }
   ],
   "pagination": {

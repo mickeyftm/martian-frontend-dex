@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { useHarvest } from 'hooks/useHarvest'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { canHarvest } from 'utils/harvest'
 import styled from 'styled-components'
 import useStake from '../../../../hooks/useStake'
 
@@ -24,9 +26,22 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
   const { onStake } = useStake(pid)
+  const { account } = useWallet()
+  const [isCanHarvest, setIsCanHarvest] = useState(false)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance.toLocaleString()
+  
+  useEffect(() => {
+    const fetchCanHarvest = async () => {
+      const res = await canHarvest(pid, account)
+      setIsCanHarvest(res)
+    }
+
+    if (account) {
+      fetchCanHarvest()
+    }
+  }, [pid, account, setIsCanHarvest])
 
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
@@ -48,7 +63,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           </Button>
         ) : null}
         <Button
-          disabled={rawEarningsBalance === 0 || pendingTx}
+          disabled={rawEarningsBalance === 0 || !isCanHarvest || pendingTx}
           onClick={async () => {
             setPendingTx(true)
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import { parseReferralCode } from 'utils/referrals'
+import { setReferralCode } from 'utils/referrals'
 import Page from 'components/layout/Page'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import FarmStakingCard from './components/FarmStakingCard'
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
   const { account } = useWallet()
 
   useEffect(() => {
-    parseReferralCode(window.location.search, account)
+    setReferralCode(window.location.search, account)
   }, [account])
 
   return (
