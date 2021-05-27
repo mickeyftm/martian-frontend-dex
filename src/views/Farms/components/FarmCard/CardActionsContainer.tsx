@@ -13,7 +13,7 @@ import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
 const Action = styled.div`
-  padding-top: 16px;
+  padding-top: 10px;
 `
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber

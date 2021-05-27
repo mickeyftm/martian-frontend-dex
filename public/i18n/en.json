@@ -1283,6 +1283,12 @@
         "stringId": 10013,
         "text": "How soon you can harvest or compound again."
       }
+    },
+    {
+      "data": {
+        "stringId": 10014,
+        "text": "Hour(s)"
+      }
     }
   ],
   "pagination": {

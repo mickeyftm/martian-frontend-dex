@@ -63,7 +63,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           </Button>
         ) : null}
         <Button
-          disabled={rawEarningsBalance === 0 || !isCanHarvest || pendingTx}
+          disabled={/* rawEarningsBalance === 0 || */ !isCanHarvest || pendingTx}
           onClick={async () => {
             setPendingTx(true)
 

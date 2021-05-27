@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Text, Skeleton, HelpIcon } from '@pancakeswap-libs/uikit'
+import { Flex, Text, Skeleton, HelpIcon, TimerIcon, useModal } from '@pancakeswap-libs/uikit'
 import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
@@ -9,6 +9,7 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import ReactTooltip from 'react-tooltip';
+import TimerModal from './TimerModal'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -82,6 +83,10 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 
+const TimerIconWrapper = styled.div`
+  cursor: pointer;
+`
+
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
@@ -93,8 +98,8 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice, ethereum, account }) => {
   const TranslateString = useI18n()
-
   const [showExpandableSection, setShowExpandableSection] = useState(false)
+  const [showTimer, setShowTimer] = useState(false)
 
   // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
@@ -131,6 +136,23 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     })
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses, risk } = farm
+
+  const [onTimerModal] = useModal(
+    <TimerModal 
+      pool={farm.tokenSymbol}
+      harvestLockup={farm.harvestLockup}
+      currentTimestamp={Date.now()}
+      nextHarvestUntilTimestamp={farm.userData?.nextHarvestUntil}
+    />
+  )
+
+  useEffect(() => {
+    if (farm.userData) {
+      const nextHarvestUntilTimestamp = Number(farm.userData.nextHarvestUntil);
+      const currentTimestamp = Date.now();
+      setShowTimer(nextHarvestUntilTimestamp !== 0 && currentTimestamp < nextHarvestUntilTimestamp)
+    }
+  }, [farm])
 
   return (
     <FCard>
@@ -181,8 +203,15 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
             <Text fontSize="17px" color="primary">{TranslateString(10013, 'How soon you can harvest or compound again.')}</Text>
           </ReactTooltip>
         </Text>
-        <Text bold>{farm.harvestLockup} Hour(s)</Text>
+        <Text bold>{farm.harvestLockup} {TranslateString(10014, 'Hour(s)')}</Text>
       </Flex>
+      {showTimer && 
+        <Flex justifyContent="flex-end" marginTop="10px">
+          <TimerIconWrapper>
+            <TimerIcon onClick={onTimerModal} color="primary" />
+          </TimerIconWrapper>
+        </Flex>
+      }
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
       <Divider />
       <ExpandableSectionButton
