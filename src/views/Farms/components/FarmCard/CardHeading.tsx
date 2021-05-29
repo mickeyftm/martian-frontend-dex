@@ -18,7 +18,8 @@ const Wrapper = styled(Flex)`
   }
 
   [src*='mrt-busd'],
-  [src*='mrt-bnb'] {
+  [src*='mrt-bnb'],
+  [src*='bnb-busd'] {
     width: 80%;
     height: auto;
   }

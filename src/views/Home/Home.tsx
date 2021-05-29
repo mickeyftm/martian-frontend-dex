@@ -66,12 +66,14 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="primary">
-          {TranslateString(576, 'Martian Finance')}
-        </Heading>
-        <Text>{TranslateString(578, 'Top 3 best DEFI app on Binance Smart Chain.')}</Text>
-      </Hero>
+      <div className="heroHeaderForHeading">
+        <Hero>
+          <Heading as="h1" size="xl" mb="24px" color="primary">
+            {TranslateString(576, 'Martian Finance')}
+          </Heading>
+          <Text>{TranslateString(578, 'Top 3 best DEFI app on Binance Smart Chain.')}</Text>
+        </Hero>
+      </div>
       <div>
         <Cards>
           <FarmStakingCard />
