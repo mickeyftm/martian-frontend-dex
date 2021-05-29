@@ -19,6 +19,28 @@ const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
   }
+
+  .heroHeaderForHeading{
+      padding: 1rem 0;
+      margin-bottom: 10px;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+
+  }
+
+   .heroHeaderForHeading:after{
+     content: "";
+     width: 100%;
+     height: 100%;
+     bottom: 0;
+     background-image: url(/images/FN-animation.svg);
+     position: absolute;
+     z-index: -1;
+     background-repeat: no-repeat;
+     background-size: cover;
+     
+  }
 `
 
 export default GlobalStyle
