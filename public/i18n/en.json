@@ -759,7 +759,7 @@
     {
       "data": {
         "stringId": 578,
-        "text": "Top 3 best DEFI app on Binance Smart Chain."
+        "text": "Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain"
       }
     },
     {
@@ -1209,7 +1209,7 @@
     {
       "data": {
         "stringId": 10000,
-        "text": "Deposit Fee will be used to buyback MARTIAN"
+        "text": "Deposit Fees will be used to reward MARTIAN holders"
       }
     },
     {
@@ -1288,6 +1288,42 @@
       "data": {
         "stringId": 10014,
         "text": "Hour(s)"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10015,
+        "text": "Add MARTIAN"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10016,
+        "text": "Token Address"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10017,
+        "text": "Add $MARTIAN"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10018,
+        "text": "Buy $MARTIAN token"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10019,
+        "text": "Remember set Slippage to 10"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10020,
+        "text": "Guide here"
       }
     }
   ],
