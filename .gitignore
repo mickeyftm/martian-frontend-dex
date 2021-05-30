@@ -23,8 +23,6 @@
 .env.development.local
 .env
 .eslintcache
-.env.production
-.env.development
 
 # debug
 npm-debug.log*
