@@ -34,6 +34,3 @@ yarn-error.log*
 # gitignore
 sftp-config.json
 /.github/
-
-# configs
-/src/config/constants/contracts.ts
