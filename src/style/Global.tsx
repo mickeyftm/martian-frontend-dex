@@ -41,6 +41,14 @@ const GlobalStyle = createGlobalStyle`
      background-size: cover;
      
   }
+
+  .hero-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem
+  }
 `
 
 export default GlobalStyle
