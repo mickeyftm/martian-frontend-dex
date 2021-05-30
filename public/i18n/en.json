@@ -1325,6 +1325,24 @@
         "stringId": 10020,
         "text": "Guide here"
       }
+    },
+    {
+      "data": {
+        "stringId": 10021,
+        "text": "Total Locked Rewards"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10022,
+        "text": "Max Tx Amount"
+      }
+    },
+    {
+      "data": {
+        "stringId": 10023,
+        "text": "Transfer Tax"
+      }
     }
   ],
   "pagination": {

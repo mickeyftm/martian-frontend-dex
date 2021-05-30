@@ -55,16 +55,28 @@ const CakeStats = () => {
           <Text fontSize="14px">{TranslateString(538, 'Total Burned')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
+        {/* <Row>
+          <Text fontSize="14px">{TranslateString(10021, 'Total Locked Rewards')}</Text>
+          0
+        </Row> */}
         <Row>
           <Text fontSize="14px">{TranslateString(10004, 'Circulating Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
+        {/* <Row>
+          <Text fontSize="14px">{TranslateString(10022, 'Max Tx Amount')}</Text>
+          0
+        </Row> */}
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New MRT/block')}</Text>
           <Text bold fontSize="14px">
             {martianPerBlock}
           </Text>
         </Row>
+        {/* <Row>
+          <Text fontSize="14px">{TranslateString(10023, 'Transfer Tax')}</Text>
+          0
+        </Row> */}
       </CardBody>
     </StyledCakeStats>
   )

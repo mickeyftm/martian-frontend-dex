@@ -12,24 +12,24 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.vaultdefi.finance/',
+        href: 'https://exchange.pancakeswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.vaultdefi.finance/#/pool',
+        href: 'https://exchange.pancakeswap.finance/#/pool',
       },
     ],
   },
-  {
-    label: 'Farms',
-    icon: 'FarmIcon',
-    href: '/farms',
-  },
-  {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: '/pools',
-  },
+  // {
+  //   label: 'Farms',
+  //   icon: 'FarmIcon',
+  //   href: '/farms',
+  // },
+  // {
+  //   label: 'Pools',
+  //   icon: 'PoolIcon',
+  //   href: '/pools',
+  // },
   {
     label: 'Referrals',
     icon: 'ReferralsIcon',
@@ -107,7 +107,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Analytics',
+    label: 'Analytics (Coming Soon)',
     icon: 'InfoIcon',
     href: '',
   },
