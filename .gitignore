@@ -23,6 +23,8 @@
 .env.development.local
 .env
 .eslintcache
+.env.production
+.env.development
 
 # debug
 npm-debug.log*
@@ -32,3 +34,6 @@ yarn-error.log*
 # gitignore
 sftp-config.json
 /.github/
+
+# configs
+/src/config/constants/contracts.ts
