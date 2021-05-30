@@ -26,11 +26,12 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/egg/3.png'), url('/images/egg/3b.png'), url('/images/FN-animation.svg');
+    background-image: url('/images/FN-animation.svg');
     background-position: left center, right center, center center;
     height: 316px;
     padding-top: 0;
-    background-size: 233px auto, 200px auto, 100% auto;
+    background-size: cover;
+    border-radius: 32px;
   }
 `
 
@@ -67,11 +68,16 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="primary">
+      <div className="hero-header">
+        <Heading as="h1" size="xl" mb="10px" color="primary">
           {TranslateString(576, 'Martian Finance')}
         </Heading>
-        <Text fontSize="15px">{TranslateString(578, 'Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain')}</Text>
+        <Text fontSize="15px">
+          {TranslateString(578, 'Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain')}
+        </Text>
+      </div>
+      <Hero>
+        <p>{}</p>
       </Hero>
       <div>
         <Cards>

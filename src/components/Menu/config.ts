@@ -45,20 +45,12 @@ const config: MenuEntry[] = [
     icon: 'ChartIcon',
     items: [
       {
-        label: 'DexGuru',
-        href: 'https://dex.guru/token',
-      },
-      {
         label: 'PooCoin',
-        href: 'https://poocoin.app/tokens',
+        href: 'https://poocoin.app/tokens/0xca167f0a8eb9f91b31d40134ce1cc3b8baf4d72f',
       },
       {
         label: 'BoggedFinance',
-        href: 'https://charts.bogged.finance/?token',
-      },
-      {
-        label: 'DexTools',
-        href: 'https://www.dextools.io/app/pancakeswap/pair-explorer',
+        href: 'https://charts.bogged.finance/?token=0xca167F0a8eb9F91B31D40134ce1Cc3b8bAF4d72f',
       },
     ],
   },
@@ -111,7 +103,7 @@ const config: MenuEntry[] = [
       {
         label: 'CoinGecko',
         href: '',
-      }
+      },
     ],
   },
   {
