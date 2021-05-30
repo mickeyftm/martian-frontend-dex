@@ -2,8 +2,16 @@ import React from 'react'
 import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js/bignumber'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { 
+  useTotalSupply, 
+  useBurnedBalance,
+  useTransferTaxRate
+} from 'hooks/useTokenBalance'
+import { 
+  useTotalLockUpRewards,
+  useMaxTxAmount
+} from 'hooks/useStats'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -31,6 +39,9 @@ const CakeStats = () => {
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
   const cakeSupply = getBalanceNumber(circSupply)
   const marketCap = eggPrice.times(circSupply)
+  const maxTxAmount = useMaxTxAmount();
+  const totalLockUpRewards = useTotalLockUpRewards()
+  const transferTaxRate = useTransferTaxRate(getCakeAddress());
 
   let martianPerBlock = 0
   if (farms && farms[0] && farms[0].martianPerBlock) {
@@ -55,28 +66,28 @@ const CakeStats = () => {
           <Text fontSize="14px">{TranslateString(538, 'Total Burned')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
-        {/* <Row>
+        <Row>
           <Text fontSize="14px">{TranslateString(10021, 'Total Locked Rewards')}</Text>
-          0
-        </Row> */}
+          {totalLockUpRewards && <CardValue fontSize="14px" value={getBalanceNumber(totalLockUpRewards)} decimals={0} />}
+        </Row> 
         <Row>
           <Text fontSize="14px">{TranslateString(10004, 'Circulating Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
-        {/* <Row>
+        <Row>
           <Text fontSize="14px">{TranslateString(10022, 'Max Tx Amount')}</Text>
-          0
-        </Row> */}
+          {maxTxAmount && <CardValue fontSize="14px" value={getBalanceNumber(maxTxAmount)} decimals={0} /> }
+        </Row> 
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New MRT/block')}</Text>
           <Text bold fontSize="14px">
             {martianPerBlock}
           </Text>
         </Row>
-        {/* <Row>
+        <Row>
           <Text fontSize="14px">{TranslateString(10023, 'Transfer Tax')}</Text>
-          0
-        </Row> */}
+          {transferTaxRate / 100}%
+        </Row>
       </CardBody>
     </StyledCakeStats>
   )

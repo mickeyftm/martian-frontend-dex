@@ -1,1 +1,1 @@
-export { default } from './IFrame'
+export { default } from './Redirect'

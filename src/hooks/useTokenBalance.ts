@@ -61,4 +61,20 @@ export const useBurnedBalance = (tokenAddress: string) => {
   return balance
 }
 
+export const useTransferTaxRate = (tokenAddress: string) => {
+  const [transferTaxRate, setTransferTaxRate] = useState(0)
+
+  useEffect(() => {
+    const fetchRate = async () => {
+      const cakeContract = getContract(cakeABI, getCakeAddress())
+      const rate = await cakeContract.methods.transferTaxRate().call()
+      setTransferTaxRate(rate)
+    }
+
+    fetchRate()
+  }, [tokenAddress])
+
+  return transferTaxRate
+}
+
 export default useTokenBalance

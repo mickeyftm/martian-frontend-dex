@@ -12,6 +12,7 @@ import {
   Link
 } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
+import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
 const CardImage = styled.img`
@@ -145,6 +146,7 @@ const BuyWrapper = styled.div`
 
 const AddMartianCard = () => {
   const TranslateString = useI18n()
+  const tokenAddress = getCakeAddress();
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
   const [addMartianDisabled, setAddMartianDisabled] = useState(false);
 
@@ -157,7 +159,7 @@ const AddMartianCard = () => {
     }
 
     setAddMartianDisabled(true);
-
+    
     const tokenSymbol = 'MRT';
     const tokenDecimals = 18;
     const tokenImage = `${process.env.REACT_APP_BASE_URL}/images/egg/9.png`;
@@ -168,7 +170,7 @@ const AddMartianCard = () => {
         params: {
           type: 'ERC20',
           options: {
-            address: process.env.REACT_APP_TOKEN_ADDRESS,
+            address: tokenAddress,
             symbol: tokenSymbol,
             decimals: tokenDecimals,
             image: tokenImage,
@@ -180,7 +182,7 @@ const AddMartianCard = () => {
     } finally {
       setAddMartianDisabled(false);
     }
-  }, [])
+  }, [tokenAddress])
 
   return (
     <Card>
@@ -198,7 +200,7 @@ const AddMartianCard = () => {
                 bold
                 onClick={() => {
                   if (navigator.clipboard) {
-                    navigator.clipboard.writeText(process.env.REACT_APP_TOKEN_ADDRESS);
+                    navigator.clipboard.writeText(tokenAddress);
                     setIsTooltipDisplayed(true);
                     setTimeout(() => {
                       setIsTooltipDisplayed(false);
@@ -208,7 +210,7 @@ const AddMartianCard = () => {
               >
                 <CopyIcon width="18px" />
                 <TokenAccount>
-                  {process.env.REACT_APP_TOKEN_ADDRESS}
+                  {tokenAddress}
                 </TokenAccount>
                 <Tooltip isTooltipDisplayed={isTooltipDisplayed}>Copied</Tooltip>
               </StyleButton>
@@ -222,7 +224,7 @@ const AddMartianCard = () => {
             </Button>
           </div>
           <BuyWrapper style={{ textAlign: 'center' }}>
-            <Link external href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${process.env.REACT_APP_TOKEN_ADDRESS}`}>
+            <Link external href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${tokenAddress}`}>
               <Button variant="primary">
                 {TranslateString(10018, 'Buy $MARTIAN token')}
               </Button>
