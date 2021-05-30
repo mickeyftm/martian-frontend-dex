@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { 
   Card, 
@@ -8,7 +8,8 @@ import {
   Text,
   Flex,
   CopyIcon,
-  Button
+  Button,
+  Link
 } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import CardValue from './CardValue'
@@ -114,7 +115,15 @@ const ActionsButtonWrapper = styled.div`
   }
 
   p {
-    margin-top: 5px;
+    margin-top: 10px;
+  }
+
+  a {
+    display: inline-block;
+
+    :hover {
+      text-decoration: none;  
+    }
   }
 
   @media only screen and (min-width: 1024px) {
@@ -136,8 +145,42 @@ const BuyWrapper = styled.div`
 
 const AddMartianCard = () => {
   const TranslateString = useI18n()
-  const tokenAddress = '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a';
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
+  const [addMartianDisabled, setAddMartianDisabled] = useState(false);
+
+  const handleAddMartian = useCallback(async () => {
+    const windowAsAny = (window as any);
+    if (typeof windowAsAny.ethereum === 'undefined' && 
+      !windowAsAny.ethereum.isMetaMask
+    ) {
+      console.error('MetaMask is not installed!');
+    }
+
+    setAddMartianDisabled(true);
+
+    const tokenSymbol = 'MRT';
+    const tokenDecimals = 18;
+    const tokenImage = `${process.env.REACT_APP_BASE_URL}/images/egg/9.png`;
+
+    try {
+      const wasAdded = await windowAsAny.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: process.env.REACT_APP_TOKEN_ADDRESS,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setAddMartianDisabled(false);
+    }
+  }, [])
 
   return (
     <Card>
@@ -155,7 +198,7 @@ const AddMartianCard = () => {
                 bold
                 onClick={() => {
                   if (navigator.clipboard) {
-                    navigator.clipboard.writeText(tokenAddress);
+                    navigator.clipboard.writeText(process.env.REACT_APP_TOKEN_ADDRESS);
                     setIsTooltipDisplayed(true);
                     setTimeout(() => {
                       setIsTooltipDisplayed(false);
@@ -165,7 +208,7 @@ const AddMartianCard = () => {
               >
                 <CopyIcon width="18px" />
                 <TokenAccount>
-                  {tokenAddress}
+                  {process.env.REACT_APP_TOKEN_ADDRESS}
                 </TokenAccount>
                 <Tooltip isTooltipDisplayed={isTooltipDisplayed}>Copied</Tooltip>
               </StyleButton>
@@ -174,19 +217,22 @@ const AddMartianCard = () => {
         </TokenWrapper>
         <ActionsButtonWrapper>
           <div>
-            <Button variant="primary">
+            <Button variant="primary" disabled={addMartianDisabled} onClick={handleAddMartian}>
               {TranslateString(10017, 'Add $MARTIAN')}
             </Button>
           </div>
           <BuyWrapper style={{ textAlign: 'center' }}>
-            <Button variant="primary">
-              {TranslateString(10018, 'Buy $MARTIAN token')}
-            </Button>
-            <p>*{TranslateString(10019, 'Remember set Slippage to 10')}%,</p>
-            <p>{TranslateString(10020, 'Guide here')}</p>
+            <Link external href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${process.env.REACT_APP_TOKEN_ADDRESS}`}>
+              <Button variant="primary">
+                {TranslateString(10018, 'Buy $MARTIAN token')}
+              </Button>
+            </Link>
+            <p>* {TranslateString(10019, 'Remember set Slippage to 5')}%,</p>
+            <Link external href="https://martianswap.gitbook.io/martianswap/">
+              {TranslateString(10020, 'Guide here')}
+            </Link>
           </BuyWrapper>
         </ActionsButtonWrapper>
-
       </CardBody>
     </Card>
   )

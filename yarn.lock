@@ -1946,7 +1946,7 @@
 
 "@pancakeswap-libs/uikit@martiandefi/martian-ui-kit-dex":
   version "0.10.2"
-  resolved "https://codeload.github.com/martiandefi/martian-ui-kit-dex/tar.gz/82f2de63c47c641df6026e09fece44acf8cebe8b"
+  resolved "https://codeload.github.com/martiandefi/martian-ui-kit-dex/tar.gz/f24bfd1f2a487ac268129abb2c25c7ac40b7f6d9"
   dependencies:
     "@pancakeswap-libs/uikit" "^0.29.4"
     "@types/lodash" "^4.14.162"
