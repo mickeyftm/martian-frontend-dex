@@ -6,6 +6,7 @@ import {
   useModal,
   Link
 } from '@pancakeswap-libs/uikit'
+import { getCakeAddress } from 'utils/addressHelpers'
 import Countdown from 'react-countdown';
 
 const CustomModal = styled.div`
@@ -27,6 +28,7 @@ const CustomModal = styled.div`
 
 const Redirect: React.FC = () => {
   const [modalInit, setModalInit] = useState(false);
+  const tokenAddress = getCakeAddress();
   
   const handleRedirect = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -35,13 +37,13 @@ const Redirect: React.FC = () => {
 
     switch(page) {
       case 'exchange':
-        redirectUrl = 'https://exchange.pancakeswap.finance/#/swap';
+        redirectUrl = `https://exchange.pancakeswap.finance/#/swap?outputCurrency=${tokenAddress}`;
         break;
       case 'liquidity':
         redirectUrl = 'https://exchange.pancakeswap.finance/#/pool';
         break;
       default:
-        redirectUrl = '/'
+        redirectUrl = '/';
     }
 
     window.location.href = redirectUrl;

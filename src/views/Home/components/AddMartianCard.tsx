@@ -160,7 +160,7 @@ const AddMartianCard = () => {
 
     setAddMartianDisabled(true);
     
-    const tokenSymbol = 'MRT';
+    const tokenSymbol = 'MARTIAN';
     const tokenDecimals = 18;
     const tokenImage = `${process.env.REACT_APP_BASE_URL}/images/egg/9.png`;
 
