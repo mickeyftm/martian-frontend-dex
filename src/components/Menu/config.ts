@@ -1,5 +1,7 @@
 import { MenuEntry } from '@pancakeswap-libs/uikit'
+import { getCakeAddress } from 'utils/addressHelpers'
 
+const tokenAddress = getCakeAddress();
 const config: MenuEntry[] = [
   {
     label: 'Home',
@@ -46,11 +48,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'PooCoin',
-        href: 'https://poocoin.app/tokens/0xca167f0a8eb9f91b31d40134ce1cc3b8baf4d72f',
+        href: `https://poocoin.app/tokens/${tokenAddress}`,
       },
       {
         label: 'BoggedFinance',
-        href: 'https://charts.bogged.finance/?token=0xca167F0a8eb9F91B31D40134ce1Cc3b8bAF4d72f',
+        href: `https://charts.bogged.finance/?token=${tokenAddress}`,
       },
     ],
   },
@@ -90,7 +92,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'BscScan',
-        href: 'https://bscscan.com/token/0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
+        href: `https://bscscan.com/token/${tokenAddress}`,
       },
       {
         label: 'DappRadar',
