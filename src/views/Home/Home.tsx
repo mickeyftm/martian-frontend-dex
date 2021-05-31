@@ -15,23 +15,22 @@ import AddMartianCard from './components/AddMartianCard'
 
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/egg/3.png');
-  background-repeat: no-repeat;
-  background-position: top center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: auto;
   margin-bottom: 32px;
-  padding-top: 116px;
   text-align: center;
+  background-image: url('/images/FN-animation.svg');
+    background-position: center center;
+    background-size: cover;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/FN-animation.svg');
-    background-position: left center, right center, center center;
+    background-position: center center;
+    background-size: cover;
     height: 316px;
     padding-top: 0;
-    background-size: cover;
     border-radius: 32px;
   }
 `
@@ -59,8 +58,21 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const ComingSoonWrapper = styled.div`
-  text-align: center;
+const Header = styled(Cards)`
+  margin-bottom: 0;
+  height: 100%;
+  width: 100%;
+`
+
+const HeaderInformationWrapper = styled(CardBody)`
+  padding: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+  }
 `
 
 const Home: React.FC = () => {
@@ -84,28 +96,28 @@ const Home: React.FC = () => {
         <Text fontSize="15px">
           {TranslateString(578, 'Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain')}
         </Text>
-
-        <ComingSoonWrapper>
-          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-            $Martian Token Will Launch In:
-          </Text>
-          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-            <Countdown 
-              date={new Date('2021-06-01T06:00:00.000-04:00')} 
-              zeroPadTime={2} 
-              renderer={CountdownTime}
-            />
-          </Text>
-          <Text fontSize="30px">
-            June 1st 6:00pm EST
-          </Text>
-          <Text fontSize="30px">
-            June 1st 10:00pm UTC
-          </Text>
-        </ComingSoonWrapper>
       </div>
       <Hero>
-        <p>{}</p>
+        <Header>
+          <HeaderInformationWrapper>
+            <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
+              $Martian Token Will Launch In:
+            </Text>
+            <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
+              <Countdown 
+                date={new Date('2021-06-01T06:00:00.000-04:00')} 
+                zeroPadTime={2} 
+                renderer={CountdownTime}
+              />
+            </Text>
+            <Text fontSize="30px">
+              June 1st 6:00pm EST
+            </Text>
+            <Text fontSize="30px">
+              June 1st 10:00pm UTC
+            </Text>
+          </HeaderInformationWrapper>
+        </Header>
       </Hero>
       <div>
         <Cards>

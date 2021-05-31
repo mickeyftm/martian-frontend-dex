@@ -125,22 +125,16 @@ const ActionsButtonWrapper = styled.div`
       text-decoration: none;  
     }
   }
-
-  @media only screen and (min-width: 768px) {
-    button {
-      width: 50%;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    button {
-      width: 70%;
-    }
-  }
 `
 
 const BuyWrapper = styled.div`
   margin-top: 20px;
+`
+
+const AddMartianIcon = styled.img`
+  width: 108px;
+  height: auto;
+  margin-bottom: 11px;
 `
 
 const ButtonIcon = styled.img`
@@ -191,9 +185,12 @@ const AddMartianCard = () => {
   return (
     <Card>
       <CardBody>
-        <Heading size="lg" mb="24px">
+        <Heading size="lg" mb="12px">
           {TranslateString(10015, 'Add MARTIAN')}
         </Heading>
+        <div style={{ textAlign: 'center' }}>
+          <AddMartianIcon src="/images/add_martian.png" alt="add martian logo" />
+        </div>
         <TokenWrapper>
           <CardImage src="/images/farms/mrt.png" alt="martian logo" />
           <TokenAddressWrapper>
