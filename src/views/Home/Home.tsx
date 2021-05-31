@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
+import { Heading, Text, BaseLayout, CardBody } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { setReferralCode } from 'utils/referrals'
 import Page from 'components/layout/Page'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import Countdown, { zeroPad } from 'react-countdown'
 import FarmStakingCard from './components/FarmStakingCard'
 import LotteryCard from './components/LotteryCard'
 import CakeStats from './components/CakeStats'
@@ -58,6 +59,10 @@ const Cards = styled(BaseLayout)`
   }
 `
 
+const ComingSoonWrapper = styled.div`
+  text-align: center;
+`
+
 const Home: React.FC = () => {
   const TranslateString = useI18n()
   const { account } = useWallet()
@@ -65,6 +70,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     setReferralCode(window.location.search, account)
   }, [account])
+
+  const CountdownTime = ({ hours, minutes, seconds, completed }) => {
+    return <span>{zeroPad(hours)}h : {zeroPad(minutes)}m : {zeroPad(seconds)}s</span>;
+  };
 
   return (
     <Page>
@@ -75,17 +84,44 @@ const Home: React.FC = () => {
         <Text fontSize="15px">
           {TranslateString(578, 'Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain')}
         </Text>
+
+        <ComingSoonWrapper>
+          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
+            $Martian Token Will Launch In:
+          </Text>
+          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
+            <Countdown 
+              date={new Date('2021-06-01T06:00:00.000-04:00')} 
+              zeroPadTime={2} 
+              renderer={CountdownTime}
+            />
+          </Text>
+          <Text fontSize="30px">
+            June 1st 6:00pm EST
+          </Text>
+          <Text fontSize="30px">
+            June 1st 10:00pm UTC
+          </Text>
+        </ComingSoonWrapper>
       </div>
       <Hero>
         <p>{}</p>
       </Hero>
       <div>
         <Cards>
-          <FarmStakingCard />
-          <TwitterCard />
-          <CakeStats />
-          <TotalValueLockedCard />
-          <AddMartianCard />
+          <CardBody style={{ padding: 0 }}>
+            <FarmStakingCard />
+            <br />
+            <CakeStats />
+          </CardBody>
+          
+          <CardBody style={{ padding: 0 }}>
+            <AddMartianCard />
+            <br />
+            <TwitterCard />
+            <br />
+            <TotalValueLockedCard />
+          </CardBody>
         </Cards>
       </div>
     </Page>

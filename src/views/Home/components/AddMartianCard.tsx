@@ -106,10 +106,8 @@ const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
 `;
 
 const ActionsButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 20px;
+  text-align: center;
 
   button {
     width: 100%;
@@ -121,27 +119,33 @@ const ActionsButtonWrapper = styled.div`
 
   a {
     display: inline-block;
+    width: 100%;
 
     :hover {
       text-decoration: none;  
     }
   }
 
-  @media only screen and (min-width: 1024px) {
-    flex-direction: row;
-
+  @media only screen and (min-width: 768px) {
     button {
-      width: unset;
+      width: 50%;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    button {
+      width: 70%;
     }
   }
 `
 
 const BuyWrapper = styled.div`
   margin-top: 20px;
+`
 
-  @media only screen and (min-width: 1024px) {
-    margin-top: 0;  
-  }
+const ButtonIcon = styled.img`
+  width: 34px;
+  height: 34px;
 `
 
 const AddMartianCard = () => {
@@ -220,13 +224,15 @@ const AddMartianCard = () => {
         <ActionsButtonWrapper>
           <div>
             <Button variant="primary" disabled={addMartianDisabled} onClick={handleAddMartian}>
-              {TranslateString(10017, 'Add $MARTIAN')}
+              {TranslateString(10017, 'Add $MARTIAN to')}&nbsp;
+              <ButtonIcon src="/images/metamask.png" alt="metamask logo" />
             </Button>
           </div>
           <BuyWrapper style={{ textAlign: 'center' }}>
             <Link external href={`https://exchange.pancakeswap.finance/#/swap?outputCurrency=${tokenAddress}`}>
               <Button variant="primary">
-                {TranslateString(10018, 'Buy $MARTIAN token')}
+                {TranslateString(10018, 'Buy $MARTIAN token')}&nbsp;
+                <ButtonIcon src="/images/pancake.png" alt="pancake logo" />
               </Button>
             </Link>
             <p>* {TranslateString(10019, 'Remember set Slippage to 5')}%,</p>
