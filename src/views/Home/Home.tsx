@@ -105,7 +105,7 @@ const Home: React.FC = () => {
             </Text>
             <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
               <Countdown 
-                date={new Date('2021-06-01T06:00:00.000-04:00')} 
+                date={new Date('2021-06-01T18:00:00.000-04:00')} 
                 zeroPadTime={2} 
                 renderer={CountdownTime}
               />
