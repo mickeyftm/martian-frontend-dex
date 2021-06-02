@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import masterChefABI from 'config/abi/masterchef.json'
 import cakeABI from 'config/abi/cake.json'
-import { 
-  getMasterChefAddress,
-  getCakeAddress
-} from 'utils/addressHelpers'
+import { getMasterChefAddress, getCakeAddress } from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
@@ -43,4 +40,4 @@ export const useMaxTxAmount = () => {
   return maxTxAmount
 }
 
-export default useTotalLockUpRewards;
+export default useTotalLockUpRewards

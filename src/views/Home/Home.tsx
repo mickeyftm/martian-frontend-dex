@@ -15,22 +15,23 @@ import AddMartianCard from './components/AddMartianCard'
 
 const Hero = styled.div`
   align-items: center;
+  background-image: url('/images/egg/3.png');
+  background-repeat: no-repeat;
+  background-position: top center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: auto;
   margin-bottom: 32px;
+  padding-top: 116px;
   text-align: center;
-  background-image: url('/images/FN-animation.svg');
-    background-position: center center;
-    background-size: cover;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/FN-animation.svg');
-    background-position: center center;
-    background-size: cover;
+    background-position: left center, right center, center center;
     height: 316px;
     padding-top: 0;
+    background-size: cover;
     border-radius: 32px;
   }
 `
@@ -58,21 +59,31 @@ const Cards = styled(BaseLayout)`
   }
 `
 
-const Header = styled(Cards)`
-  margin-bottom: 0;
-  height: 100%;
-  width: 100%;
-`
+const CardsFullWidth = styled(BaseLayout)`
+  align-items: stretch;
+  justify-content: stretch;
+  margin-bottom: 48px;
 
-const HeaderInformationWrapper = styled(CardBody)`
-  padding: 0;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  & > div {
+    grid-column: span 12;
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    & > div {
+      grid-column: span 8;
+    }
+  }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    border-top-left-radius: 32px;
-    border-bottom-left-radius: 32px;
+    & > div {
+      grid-column: span 12;
+    }
   }
+`
+
+const ComingSoonWrapper = styled.div`
+  text-align: center;
 `
 
 const Home: React.FC = () => {
@@ -84,8 +95,12 @@ const Home: React.FC = () => {
   }, [account])
 
   const CountdownTime = ({ hours, minutes, seconds, completed }) => {
-    return <span>{zeroPad(hours)}h : {zeroPad(minutes)}m : {zeroPad(seconds)}s</span>;
-  };
+    return (
+      <span>
+        {zeroPad(hours)}h : {zeroPad(minutes)}m : {zeroPad(seconds)}s
+      </span>
+    )
+  }
 
   return (
     <Page>
@@ -96,40 +111,30 @@ const Home: React.FC = () => {
         <Text fontSize="15px">
           {TranslateString(578, 'Automatic Liquidity Acquisition Yield Farm & AMM on Binance Smart Chain')}
         </Text>
+
+        <ComingSoonWrapper>
+          <Text fontSize="3rem" color="primary" style={{ textDecoration: 'underline', fontWeight: 'bold' }}>
+            $Martian Token Has Launched!
+          </Text>
+        </ComingSoonWrapper>
       </div>
       <Hero>
-        <Header>
-          <HeaderInformationWrapper>
-            <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-              $Martian Token Will Launch In:
-            </Text>
-            <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-              <Countdown 
-                date={new Date('2021-06-01T18:00:00.000-04:00')} 
-                zeroPadTime={2} 
-                renderer={CountdownTime}
-              />
-            </Text>
-            <Text fontSize="30px">
-              June 1st 6:00pm EST
-            </Text>
-            <Text fontSize="30px">
-              June 1st 10:00pm UTC
-            </Text>
-          </HeaderInformationWrapper>
-        </Header>
+        <p>{}</p>
       </Hero>
       <div>
+        <CardsFullWidth>
+          <CardBody style={{ padding: 0 }}>
+            <AddMartianCard />
+          </CardBody>
+        </CardsFullWidth>
         <Cards>
           <CardBody style={{ padding: 0 }}>
             <FarmStakingCard />
             <br />
             <CakeStats />
           </CardBody>
-          
+
           <CardBody style={{ padding: 0 }}>
-            <AddMartianCard />
-            <br />
             <TwitterCard />
             <br />
             <TotalValueLockedCard />

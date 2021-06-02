@@ -3,15 +3,8 @@ import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js/bignumber'
 import styled from 'styled-components'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { 
-  useTotalSupply, 
-  useBurnedBalance,
-  useTransferTaxRate
-} from 'hooks/useTokenBalance'
-import { 
-  useTotalLockUpRewards,
-  useMaxTxAmount
-} from 'hooks/useStats'
+import { useTotalSupply, useBurnedBalance, useTransferTaxRate } from 'hooks/useTokenBalance'
+import { useTotalLockUpRewards, useMaxTxAmount } from 'hooks/useStats'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -39,9 +32,9 @@ const CakeStats = () => {
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
   const cakeSupply = getBalanceNumber(circSupply)
   const marketCap = eggPrice.times(circSupply)
-  const maxTxAmount = useMaxTxAmount();
+  const maxTxAmount = useMaxTxAmount()
   const totalLockUpRewards = useTotalLockUpRewards()
-  const transferTaxRate = useTransferTaxRate(getCakeAddress());
+  const transferTaxRate = useTransferTaxRate(getCakeAddress())
 
   let martianPerBlock = 0
   if (farms && farms[0] && farms[0].martianPerBlock) {
@@ -68,16 +61,18 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(10021, 'Total Locked Rewards')}</Text>
-          {totalLockUpRewards && <CardValue fontSize="14px" value={getBalanceNumber(totalLockUpRewards)} decimals={0} />}
-        </Row> 
+          {totalLockUpRewards && (
+            <CardValue fontSize="14px" value={getBalanceNumber(totalLockUpRewards)} decimals={0} />
+          )}
+        </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(10004, 'Circulating Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(10022, 'Max Tx Amount')}</Text>
-          {maxTxAmount && <CardValue fontSize="14px" value={getBalanceNumber(maxTxAmount)} decimals={0} /> }
-        </Row> 
+          {maxTxAmount && <CardValue fontSize="14px" value={getBalanceNumber(maxTxAmount)} decimals={0} />}
+        </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New MRT/block')}</Text>
           <Text bold fontSize="14px">

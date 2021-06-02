@@ -5,34 +5,34 @@ const farms: FarmConfig[] = [
   {
     pid: 0,
     risk: 5,
-    lpSymbol: 'MRT-BUSD LP',
+    lpSymbol: 'MARTIAN-BUSD LP',
     lpAddresses: {
       97: '',
-      56: '0xe717d41075ead1c0903cf52c86f532f329fb411c',
+      56: '0x1ba3cd8e7c62ced23cb244b25565e1afe68464ad',
     },
-    tokenSymbol: 'MRT',
+    tokenSymbol: 'MARTIAN',
     tokenAddresses: {
       97: '',
-      56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
+      56: '0xca167f0a8eb9f91b31d40134ce1cc3b8baf4d72f',
     },
-    harvestLockup: 2,
+    harvestLockup: 3,
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
   },
   {
     pid: 1,
     risk: 5,
-    lpSymbol: 'MRT-BNB LP',
+    lpSymbol: 'MARTIAN-BNB LP',
     lpAddresses: {
       97: '',
-      56: '0xdc8b4946428e227bfd98a3b86c049d93103ee628',
+      56: '0x34ee9f69089ed897d42a89e5f6c01dd4f4029ca4',
     },
-    tokenSymbol: 'MRT',
+    tokenSymbol: 'MARTIAN',
     tokenAddresses: {
       97: '',
-      56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
+      56: '0xca167f0a8eb9f91b31d40134ce1cc3b8baf4d72f',
     },
-    harvestLockup: 2,
+    harvestLockup: 3,
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
@@ -47,12 +47,85 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BNB',
     tokenAddresses: {
       97: '',
-      56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
+      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
     },
-    harvestLockup: 8,
+    harvestLockup: 3,
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
   },
+  {
+    pid: 4,
+    risk: 5,
+    isTokenOnly: true,
+    lpSymbol: 'MARTIAN',
+    lpAddresses: {
+      97: '',
+      56: '0x1ba3cd8e7c62ced23cb244b25565e1afe68464ad', // MARTIAN-BUSD LP
+    },
+    tokenSymbol: 'MARTIAN',
+    tokenAddresses: {
+      97: '',
+      56: '0xca167f0a8eb9f91b31d40134ce1cc3b8baf4d72f',
+    },
+    harvestLockup: 3,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 8,
+    risk: 1,
+    isTokenOnly: true,
+    lpSymbol: 'BUSD',
+    lpAddresses: {
+      97: '',
+      56: '0x1ba3cd8e7c62ced23cb244b25565e1afe68464ad', // MARTIAN-BUSD LP
+    },
+    tokenSymbol: 'BUSD',
+    tokenAddresses: {
+      97: '',
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+    },
+    harvestLockup: 3,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 9,
+    risk: 3,
+    isTokenOnly: true,
+    lpSymbol: 'WBNB',
+    lpAddresses: {
+      97: '',
+      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // BNB-BUSD LP
+    },
+    tokenSymbol: 'WBNB',
+    tokenAddresses: {
+      97: '',
+      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
+    },
+    harvestLockup: 3,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 10,
+    risk: 4,
+    isTokenOnly: true,
+    lpSymbol: 'CAKE',
+    lpAddresses: {
+      97: '',
+      56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458', // CAKE-BUSD LP
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    },
+    harvestLockup: 3,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+
   // {
   //   pid: 3,
   //   risk: 1,
@@ -181,24 +254,6 @@ const farms: FarmConfig[] = [
   //   quoteTokenSymbol: QuoteToken.BNB,
   //   quoteTokenAdresses: contracts.wbnb,
   // },
-  {
-    pid: 3,
-    risk: 5,
-    isTokenOnly: true,
-    lpSymbol: 'MRT',
-    lpAddresses: {
-      97: '',
-      56: '0xe717d41075ead1c0903cf52c86f532f329fb411c', // MRT-BUSD LP
-    },
-    tokenSymbol: 'MRT',
-    tokenAddresses: {
-      97: '',
-      56: '0x65d8861d66f0b77faf82e0cc8377ef4539b6c69a',
-    },
-    harvestLockup: 3,
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
-  },
   // {
   //   pid: 13,
   //   risk: 1,

@@ -8,10 +8,10 @@ const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as Abi
 
 export const canHarvest = async (pid, account): Promise<boolean> => {
   if (account === null) {
-    return false;
+    return false
   }
   const canUserHarvest: boolean = await masterChefContract.methods.canHarvest(pid, account).call()
-  return canUserHarvest;
+  return canUserHarvest
 }
 
 export default canHarvest

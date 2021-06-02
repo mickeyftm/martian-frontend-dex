@@ -9,9 +9,9 @@ const CryptoJS = require('crypto-js')
 const web3 = getWeb3()
 const referralContract = new web3.eth.Contract(referralABI as unknown as AbiItem, getReferralAddress())
 const secretKey = CryptoJS.enc.Utf8.parse(process.env.REACT_APP_SECRET_KEY)
-const hexPrefix = '0x';
-const zeroAddress = `${hexPrefix}0000000000000000000000000000000000000000`;
-const martianRefCodeCookieKey = 'martian_finance_referral_code';
+const hexPrefix = '0x'
+const zeroAddress = `${hexPrefix}0000000000000000000000000000000000000000`
+const martianRefCodeCookieKey = 'martian_finance_referral_code'
 
 export const generateReferralLink = (account) => {
   const simplifieldAccount = account.replace(hexPrefix, '')
@@ -26,30 +26,28 @@ export const generateReferralLink = (account) => {
 }
 
 export function getReferralCookie() {
-  const martianCookie = document.cookie
-    .split('; ')
-    .find(row => row.startsWith(`{martianRefCodeCookieKey}=`));
+  const martianCookie = document.cookie.split('; ').find((row) => row.startsWith(`{martianRefCodeCookieKey}=`))
 
   if (typeof martianCookie === 'undefined') {
-    return '';
+    return ''
   }
 
-  return martianCookie.split('=')[1];
+  return martianCookie.split('=')[1]
 }
 
 export async function setReferralCode(referralCode, account) {
   const searchParams = new URLSearchParams(referralCode)
-  const isRefNotExists = searchParams.get('ref') === null;
-  const isAccountNotExist = account === null;
+  const isRefNotExists = searchParams.get('ref') === null
+  const isAccountNotExist = account === null
   if (isRefNotExists || isAccountNotExist) {
-    return false;
+    return false
   }
 
-  const hasExistingCookie = getReferralCookie();
+  const hasExistingCookie = getReferralCookie()
   const referrerAddress = await referralContract.methods.getReferrer(account).call()
-  const hasExistingReferrer = referrerAddress !== zeroAddress;
+  const hasExistingReferrer = referrerAddress !== zeroAddress
   if (hasExistingCookie || hasExistingReferrer) {
-    return false;
+    return false
   }
 
   // using searchParams.get('ref') functions removes some characters from the url
@@ -72,9 +70,9 @@ export async function setReferralCode(referralCode, account) {
 }
 
 export function getReferralCode() {
-  const cookieValue = getReferralCookie();
+  const cookieValue = getReferralCookie()
   if (!cookieValue) {
-    return zeroAddress;
+    return zeroAddress
   }
 
   const decryptedReferrereAddress = CryptoJS.Rabbit.decrypt(cookieValue, secretKey, {
@@ -86,7 +84,7 @@ export function getReferralCode() {
 
   document.cookie = `${martianRefCodeCookieKey}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`
 
-  return referrereAddress;
+  return referrereAddress
 }
 
 export default generateReferralLink

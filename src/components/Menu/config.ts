@@ -1,7 +1,7 @@
 import { MenuEntry } from '@pancakeswap-libs/uikit'
 import { getCakeAddress } from 'utils/addressHelpers'
 
-const tokenAddress = getCakeAddress();
+const tokenAddress = getCakeAddress()
 const config: MenuEntry[] = [
   {
     label: 'Home',
@@ -22,25 +22,25 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  // {
-  //   label: 'Farms',
-  //   icon: 'FarmIcon',
-  //   href: '/farms',
-  // },
-  // {
-  //   label: 'Pools',
-  //   icon: 'PoolIcon',
-  //   href: '/pools',
-  // },
+  {
+    label: 'Farms',
+    icon: 'FarmIcon',
+    href: '/farms',
+  },
+  {
+    label: 'Pools',
+    icon: 'PoolIcon',
+    href: '/pools',
+  },
   {
     label: 'Referrals',
     icon: 'ReferralsIcon',
     href: '/referrals',
   },
   {
-    label: 'Audits',
+    label: 'Audits (In Progress)',
     icon: 'AuditIcon',
-    href: 'https://github.com/martiandefi/audit',
+    href: '',
   },
   {
     label: 'Price Chart',
@@ -95,15 +95,19 @@ const config: MenuEntry[] = [
         href: `https://bscscan.com/token/${tokenAddress}`,
       },
       {
-        label: 'DappRadar',
+        label: 'PooCoin.app',
+        href: `https://poocoin.app/tokens/${tokenAddress}`,
+      },
+      {
+        label: 'DappRadar (comingsoon)',
         href: '',
       },
       {
-        label: 'CoinMarketCap',
+        label: 'CoinMarketCap (comingsoon)',
         href: '',
       },
       {
-        label: 'CoinGecko',
+        label: 'CoinGecko (comingsoon)',
         href: '',
       },
     ],

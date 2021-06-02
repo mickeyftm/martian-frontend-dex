@@ -1,16 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { 
-  Card, 
-  CardBody, 
-  Heading, 
-  Skeleton, 
-  Text,
-  Flex,
-  CopyIcon,
-  Button,
-  Link
-} from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Skeleton, Text, Flex, CopyIcon, Button, Link } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -23,8 +13,10 @@ const CardImage = styled.img`
 
 const TokenWrapper = styled.div`
   @media only screen and (min-width: 768px) {
-    display:flex;
+    display: flex;
     flex-direction: row;
+    text-align: center;
+    justify-content: center;
   }
 `
 
@@ -64,18 +56,18 @@ const TokenAccount = styled.div`
   }
 
   @media only screen and (min-width: 1024px) {
-    width: 55%;
+    width: 100%;
   }
 `
 
-const StyleButton = styled(Text).attrs({ role: "button" })`
+const StyleButton = styled(Text).attrs({ role: 'button' })`
   position: relative;
   display: flex;
   line-height: unset !important;
-`;
+`
 
 const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
-  display: ${({ isTooltipDisplayed }) => (isTooltipDisplayed ? "block" : "none")};
+  display: ${({ isTooltipDisplayed }) => (isTooltipDisplayed ? 'block' : 'none')};
   position: absolute;
   bottom: -29px;
   right: 0;
@@ -103,7 +95,7 @@ const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
   @media only screen and (min-width: 1024px) {
     width: 60%;
   }
-`;
+`
 
 const ActionsButtonWrapper = styled.div`
   margin-top: 20px;
@@ -122,7 +114,7 @@ const ActionsButtonWrapper = styled.div`
     width: 100%;
 
     :hover {
-      text-decoration: none;  
+      text-decoration: none;
     }
   }
 `
@@ -144,23 +136,21 @@ const ButtonIcon = styled.img`
 
 const AddMartianCard = () => {
   const TranslateString = useI18n()
-  const tokenAddress = getCakeAddress();
-  const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
-  const [addMartianDisabled, setAddMartianDisabled] = useState(false);
+  const tokenAddress = getCakeAddress()
+  const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false)
+  const [addMartianDisabled, setAddMartianDisabled] = useState(false)
 
   const handleAddMartian = useCallback(async () => {
-    const windowAsAny = (window as any);
-    if (typeof windowAsAny.ethereum === 'undefined' && 
-      !windowAsAny.ethereum.isMetaMask
-    ) {
-      console.error('MetaMask is not installed!');
+    const windowAsAny = window as any
+    if (typeof windowAsAny.ethereum === 'undefined' && !windowAsAny.ethereum.isMetaMask) {
+      console.error('MetaMask is not installed!')
     }
 
-    setAddMartianDisabled(true);
-    
-    const tokenSymbol = 'MARTIAN';
-    const tokenDecimals = 18;
-    const tokenImage = `${process.env.REACT_APP_BASE_URL}/images/egg/9.png`;
+    setAddMartianDisabled(true)
+
+    const tokenSymbol = 'MARTIAN'
+    const tokenDecimals = 18
+    const tokenImage = `${process.env.REACT_APP_BASE_URL}/images/egg/9.png`
 
     try {
       const wasAdded = await windowAsAny.ethereum.request({
@@ -174,18 +164,18 @@ const AddMartianCard = () => {
             image: tokenImage,
           },
         },
-      });
+      })
     } catch (error) {
-      console.error(error);
+      console.error(error)
     } finally {
-      setAddMartianDisabled(false);
+      setAddMartianDisabled(false)
     }
   }, [tokenAddress])
 
   return (
     <Card>
       <CardBody>
-        <Heading size="lg" mb="12px">
+        <Heading size="lg" mb="24px" style={{ textAlign: 'center' }}>
           {TranslateString(10015, 'Add MARTIAN')}
         </Heading>
         <div style={{ textAlign: 'center' }}>
@@ -201,18 +191,16 @@ const AddMartianCard = () => {
                 bold
                 onClick={() => {
                   if (navigator.clipboard) {
-                    navigator.clipboard.writeText(tokenAddress);
-                    setIsTooltipDisplayed(true);
+                    navigator.clipboard.writeText(tokenAddress)
+                    setIsTooltipDisplayed(true)
                     setTimeout(() => {
-                      setIsTooltipDisplayed(false);
-                    }, 1000);
+                      setIsTooltipDisplayed(false)
+                    }, 1000)
                   }
                 }}
               >
                 <CopyIcon width="18px" />
-                <TokenAccount>
-                  {tokenAddress}
-                </TokenAccount>
+                <TokenAccount>{tokenAddress}</TokenAccount>
                 <Tooltip isTooltipDisplayed={isTooltipDisplayed}>Copied</Tooltip>
               </StyleButton>
             </TokenAccountWrapper>
@@ -233,7 +221,10 @@ const AddMartianCard = () => {
               </Button>
             </Link>
             <p>* {TranslateString(10019, 'Remember set Slippage to 5')}%,</p>
-            <Link external href="https://martianswap.gitbook.io/martianswap/">
+            <Link
+              external
+              href="https://martianswap.gitbook.io/martianswap/getting-started/how-to-purchase-usdmartian-tokens"
+            >
               {TranslateString(10020, 'Guide here')}
             </Link>
           </BuyWrapper>

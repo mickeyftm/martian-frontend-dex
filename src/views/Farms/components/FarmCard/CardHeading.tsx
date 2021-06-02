@@ -17,8 +17,8 @@ const Wrapper = styled(Flex)`
     margin-right: 0.25rem;
   }
 
-  [src*='mrt-busd'],
-  [src*='mrt-bnb'],
+  [src*='martian-busd'],
+  [src*='martian-bnb'],
   [src*='bnb-busd'] {
     width: 80%;
     height: auto;

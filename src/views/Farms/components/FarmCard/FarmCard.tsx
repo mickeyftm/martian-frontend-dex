@@ -8,7 +8,7 @@ import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip'
 import TimerModal from './TimerModal'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -127,7 +127,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     : '-'
 
   const lpLabel = farm.lpSymbol
-  const earnLabel = 'MRT'
+  const earnLabel = 'MARTIAN'
   const farmAPY =
     farm.apy &&
     farm.apy.times(new BigNumber(100)).toNumber().toLocaleString(undefined, {
@@ -138,18 +138,18 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses, risk } = farm
 
   const [onTimerModal] = useModal(
-    <TimerModal 
+    <TimerModal
       pool={farm.tokenSymbol}
       harvestLockup={farm.harvestLockup}
       currentTimestamp={Date.now()}
       nextHarvestUntilTimestamp={farm.userData?.nextHarvestUntil}
-    />
+    />,
   )
 
   useEffect(() => {
     if (farm.userData) {
-      const nextHarvestUntilTimestamp = Number(farm.userData.nextHarvestUntil);
-      const currentTimestamp = Date.now();
+      const nextHarvestUntilTimestamp = Number(farm.userData.nextHarvestUntil)
+      const currentTimestamp = Date.now()
       setShowTimer(nextHarvestUntilTimestamp !== 0 && currentTimestamp < nextHarvestUntilTimestamp)
     }
   }, [farm])
@@ -198,20 +198,27 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <Flex justifyContent="space-between">
         <Text>
           {TranslateString(10012, 'Harvest Lockup')}:
-          <span data-tip data-for='harvestLockup'>&nbsp;<HelpIcon color="primary" style={{width: '13px', height: 'auto'}} /></span>
+          <span data-tip data-for="harvestLockup">
+            &nbsp;
+            <HelpIcon color="primary" style={{ width: '13px', height: 'auto' }} />
+          </span>
           <ReactTooltip id="harvestLockup" place="right" type="dark" effect="float">
-            <Text fontSize="17px" color="primary">{TranslateString(10013, 'How soon you can harvest or compound again.')}</Text>
+            <Text fontSize="17px" color="primary">
+              {TranslateString(10013, 'How soon you can harvest or compound again.')}
+            </Text>
           </ReactTooltip>
         </Text>
-        <Text bold>{farm.harvestLockup} {TranslateString(10014, 'Hour(s)')}</Text>
+        <Text bold>
+          {farm.harvestLockup} {TranslateString(10014, 'Hour(s)')}
+        </Text>
       </Flex>
-      {showTimer && 
+      {showTimer && (
         <Flex justifyContent="flex-end" marginTop="10px">
           <TimerIconWrapper>
             <TimerIcon onClick={onTimerModal} color="primary" />
           </TimerIconWrapper>
         </Flex>
-      }
+      )}
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
       <Divider />
       <ExpandableSectionButton
