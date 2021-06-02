@@ -7,7 +7,7 @@ import {
   fetchFarmUserAllowances,
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
-  fetchFarmUserNextHarvestUntil
+  fetchFarmUserNextHarvestUntil,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 

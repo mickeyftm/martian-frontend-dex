@@ -59,6 +59,29 @@ const Cards = styled(BaseLayout)`
   }
 `
 
+const CardsFullWidth = styled(BaseLayout)`
+  align-items: stretch;
+  justify-content: stretch;
+  margin-bottom: 48px;
+
+  & > div {
+    grid-column: span 12;
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    & > div {
+      grid-column: span 8;
+    }
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    & > div {
+      grid-column: span 12;
+    }
+  }
+`
+
 const ComingSoonWrapper = styled.div`
   text-align: center;
 `
@@ -72,8 +95,12 @@ const Home: React.FC = () => {
   }, [account])
 
   const CountdownTime = ({ hours, minutes, seconds, completed }) => {
-    return <span>{zeroPad(hours)}h : {zeroPad(minutes)}m : {zeroPad(seconds)}s</span>;
-  };
+    return (
+      <span>
+        {zeroPad(hours)}h : {zeroPad(minutes)}m : {zeroPad(seconds)}s
+      </span>
+    )
+  }
 
   return (
     <Page>
@@ -86,21 +113,8 @@ const Home: React.FC = () => {
         </Text>
 
         <ComingSoonWrapper>
-          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-            $Martian Token Will Launch In:
-          </Text>
-          <Text fontSize="40px" color="primary" style={{ textDecoration: 'underline' }}>
-            <Countdown 
-              date={new Date('2021-06-01T06:00:00.000-04:00')} 
-              zeroPadTime={2} 
-              renderer={CountdownTime}
-            />
-          </Text>
-          <Text fontSize="30px">
-            June 1st 6:00pm EST
-          </Text>
-          <Text fontSize="30px">
-            June 1st 10:00pm UTC
+          <Text fontSize="3rem" color="primary" style={{ textDecoration: 'underline', fontWeight: 'bold' }}>
+            $Martian Token Has Launched!
           </Text>
         </ComingSoonWrapper>
       </div>
@@ -108,16 +122,19 @@ const Home: React.FC = () => {
         <p>{}</p>
       </Hero>
       <div>
+        <CardsFullWidth>
+          <CardBody style={{ padding: 0 }}>
+            <AddMartianCard />
+          </CardBody>
+        </CardsFullWidth>
         <Cards>
           <CardBody style={{ padding: 0 }}>
             <FarmStakingCard />
             <br />
             <CakeStats />
           </CardBody>
-          
+
           <CardBody style={{ padding: 0 }}>
-            <AddMartianCard />
-            <br />
             <TwitterCard />
             <br />
             <TotalValueLockedCard />

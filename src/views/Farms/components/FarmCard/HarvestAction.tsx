@@ -31,7 +31,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance.toLocaleString()
-  
+
   useEffect(() => {
     const fetchCanHarvest = async () => {
       const res = await canHarvest(pid, account)
